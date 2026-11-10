@@ -1,0 +1,248 @@
+:root {
+  --bg-start: #0f172a;
+  --bg-end: #1e293b;
+  --surface: rgba(255, 255, 255, 0.05);
+  --text: #f8fafc;
+  --accent: #6366f1;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  background: #020617;
+  overflow-x: hidden;
+  transition: color 600ms ease;
+}
+
+.theme-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at top left, var(--bg-start), var(--bg-end));
+  opacity: 1;
+  transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0;
+  background: linear-gradient(to right, #fff, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  letter-spacing: -0.02em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+}
+
+.camera-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+video,
+canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#overlay {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.avatar-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 440px;
+  position: relative;
+  gap: 1rem;
+}
+
+.emoji-face {
+  font-size: 8rem;
+  line-height: 1;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+  transition: transform 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.avatar-3d-wrap {
+  width: 100%;
+  height: 240px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+  position: relative;
+}
+
+.holding {
+  animation: pulse-accent 1s infinite alternate;
+  font-weight: 900;
+}
+
+@keyframes pulse-accent {
+  from {
+    color: var(--accent);
+    transform: scale(1);
+  }
+
+  to {
+    color: #fff;
+    transform: scale(1.1);
+  }
+}
+
+.avatar-label {
+
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 1rem;
+  color: var(--accent);
+}
+
+.btn {
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  font-weight: 700;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  transition: all 300ms ease;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.btn.ghost {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.game {
+  background: linear-gradient(135deg, var(--surface), rgba(255, 255, 255, 0.02));
+}
+
+.pill {
+  padding: 0.4rem 1rem;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.1);
+  font-family: monospace;
+  font-size: 1.1rem;
+  color: var(--accent);
+}
+
+/* Emotion Themes */
+.theme-happy {
+  --bg-start: #1e1b4b;
+  --bg-end: #4338ca;
+  --accent: #fbbf24;
+}
+
+.theme-sad {
+  --bg-start: #0f172a;
+  --bg-end: #1e3a8a;
+  --accent: #60a5fa;
+}
+
+.theme-angry {
+  --bg-start: #450a0a;
+  --bg-end: #991b1b;
+  --accent: #f87171;
+}
+
+.theme-fearful {
+  --bg-start: #1e1b4b;
+  --bg-end: #312e81;
+  --accent: #a78bfa;
+}
+
+.theme-surprised {
+  --bg-start: #064e3b;
+  --bg-end: #059669;
+  --accent: #34d399;
+}
+
+.theme-disgusted {
+  --bg-start: #14532d;
+  --bg-end: #166534;
+  --accent: #a3e635;
+}
+
+.theme-neutral {
+  --bg-start: #0f172a;
+  --bg-end: #1e293b;
+  --accent: #818cf8;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

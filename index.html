@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emotion-Controlled Adaptive UI Game</title>
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+
+<body class="theme-neutral">
+  <div id="themeBackdrop" class="theme-backdrop" aria-hidden="true"></div>
+  <main class="app-shell">
+    <header class="top-bar card">
+      <div>
+        <h1>Emotion-Controlled Adaptive UI</h1>
+        <p class="subtle">
+          Real-time webcam emotion detection with adaptive interface and a
+          mini game.
+        </p>
+      </div>
+      <div class="header-actions">
+        <button type="button" id="muteAudioBtn" class="btn ghost" aria-pressed="false"
+          title="Mute adaptive background sound">
+          Sound: On
+        </button>
+        <button id="startBtn" class="btn">Start Camera</button>
+      </div>
+    </header>
+
+    <section class="grid">
+      <article class="card panel">
+        <h2>Live Camera</h2>
+        <div class="camera-wrap">
+          <video id="video" autoplay playsinline muted></video>
+          <canvas id="overlay"></canvas>
+        </div>
+        <p id="status" class="status">Waiting to start...</p>
+      </article>
+
+      <article class="card panel">
+        <h2>Your Avatar</h2>
+        <div class="avatar-zone">
+          <div id="emojiFace" class="emoji-face">🙂</div>
+          <div id="avatarContainer" class="avatar-3d-wrap"></div>
+          <div id="avatarLabel" class="avatar-label">Neutral</div>
+          <div id="confidence" class="subtle">Confidence: -</div>
+        </div>
+      </article>
+
+
+    </section>
+
+    <section class="card game">
+      <h2>Emotion Mimic Game</h2>
+      <p class="subtle">
+        Match the target emotion with at least <strong>80%</strong> confidence
+        and hold it briefly to score.
+      </p>
+      <div class="game-row">
+        <div>Target: <span id="targetEmotion" class="pill">happy</span></div>
+        <div>Score: <span id="score">0</span></div>
+        <div>Time Left: <span id="timeLeft">60</span>s</div>
+      </div>
+      <button id="startGameBtn" class="btn ghost" disabled>Start Game</button>
+    </section>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
